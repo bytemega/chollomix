@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 use Revolution\Amazon\ProductAdvertising\Facades\AmazonProduct;
 
-//use Goutte\Client;
+use Goutte\Client;
 
 use App\ImportProduct;
 use App\Product;
@@ -14,9 +14,6 @@ use App\ProductImage;
 use App\ImportResponse;
 use Illuminate\Support\Facades\Storage;
 
-use GuzzleHttp\Client;
-
-use GuzzleHttp\Cookie\FileCookieJar;
 
 class AmazonController extends Controller
 {
@@ -26,28 +23,6 @@ class AmazonController extends Controller
     
     
     public function getProducts($hash){
-        
-        
-            $client = new Client();
-            $res = $client->request('GET', 'https://www.amazon.es/s?rh=n%3A667049031%2Cn%3A%21667050031%2Cn%3A938010031&page=4', [
-                'auth' => ['user', 'pass']
-            ]);
-            echo $res->getStatusCode();
-            // "200"
-            echo $res->getHeader('content-type')[0];
-            // 'application/json; charset=utf8'
-            echo $res->getBody();
-            // {"type":"User"...'
-
-            // Send an asynchronous request.
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'http://httpbin.org');
-            $promise = $client->sendAsync($request)->then(function ($response) {
-                echo 'I completed! ' . $response->getBody();
-            });
-            $promise->wait();
-     
-            die;
-     
         
             $import = new Import;
             $import = $import->getByHash($hash);
