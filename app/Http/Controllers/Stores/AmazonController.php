@@ -34,6 +34,7 @@ class AmazonController extends Controller
             $client = new Client();
             $client->setHeader('User-Agent', "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0");
             $client->setHeader('Cache-Control:', 'no-cache');
+            $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0");
             $crawler = $client->request('GET',"$web");
             
             dd($crawler);
