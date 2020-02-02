@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Revolution\Amazon\ProductAdvertising\Facades\AmazonProduct;
 
 use Goutte\Client;
+use GuzzleHttp\Cookie;
 
 use App\ImportProduct;
 use App\Product;
@@ -24,6 +25,24 @@ class AmazonController extends Controller
     
     public function getProducts($hash){
         
+        $cookieJar = new \GuzzleHttp\Cookie\CookieJar(true);
+
+        $cookieJar->setCookie(new \GuzzleHttp\Cookie\SetCookie([
+               'Domain'  => "www.amazon.es",
+               'Name'    => '$name',
+               'Value'   => '$value',
+               'Discard' => true
+         ]));
+
+         $client = new Client();
+         $guzzleclient = new \GuzzleHttp\Client([
+                'timeout' => 900,
+                'verify' => false,
+                'cookies' => $cookieJar
+          ]);
+          $client->setClient($guzzleclient);
+
+        
             $import = new Import;
             $import = $import->getByHash($hash);
             
@@ -32,7 +51,7 @@ class AmazonController extends Controller
         
             $url = 'https://www.amazon.es/s?rh=n%3A667049031%2Cn%3A%21667050031%2Cn%3A';
             $web = $url.$node."&page=".$page; 
-            $client = new Client();
+            //$client = new Client();
             $client->setHeader('User-Agent', "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0");
             $client->setHeader('Cache-Control:', 'no-cache');
             $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0");
