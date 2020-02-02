@@ -22,29 +22,6 @@ class AmazonController extends Controller
     
     
     public function getProducts($hash){
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-              CURLOPT_URL => "https://www.amazon.es/s?rh=n%3A667049031%2Cn%3A%21667050031%2Cn%3A938008031&page=14",
-              CURLOPT_RETURNTRANSFER => true,
-              CURLOPT_ENCODING => "",
-              CURLOPT_MAXREDIRS => 10,
-              CURLOPT_TIMEOUT => 0,
-              CURLOPT_FOLLOWLOCATION => true,
-              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-              CURLOPT_CUSTOMREQUEST => "GET",
-              CURLOPT_HTTPHEADER => array(
-                "Content-Type: application/x-www-form-urlencoded"
-              ),
-            ));
-
-            $response = curl_exec($curl);
-
-            curl_close($curl);
-            echo $response;
-            die;
-        
-        
         
             $import = new Import;
             $import = $import->getByHash($hash);
