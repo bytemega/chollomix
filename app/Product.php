@@ -23,6 +23,11 @@ class Product extends Model
         return $this->hasMany('App\ProductImage');
     }
     
+    public function prices()
+    {
+        return $this->hasMany('App\ProductPrice');
+    }
+    
         public function getBySKU($sku){
             
             $product = Product::where('sku', $sku)->first();

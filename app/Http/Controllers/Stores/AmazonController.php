@@ -12,6 +12,7 @@ use App\ImportProduct;
 use App\Product;
 use App\Import;
 use App\ProductImage;
+use App\ProductPrice;
 use App\ImportResponse;
 use Illuminate\Support\Facades\Storage;
 
@@ -25,24 +26,6 @@ class AmazonController extends Controller
     
     public function getProducts($hash){
         
-        $cookieJar = new \GuzzleHttp\Cookie\CookieJar(true);
-
-        $cookieJar->setCookie(new \GuzzleHttp\Cookie\SetCookie([
-               'Domain'  => "www.amazon.es",
-               'Name'    => '$name',
-               'Value'   => '$value',
-               'Discard' => true
-         ]));
-
-         $client = new Client();
-         $guzzleclient = new \GuzzleHttp\Client([
-                'timeout' => 900,
-                'verify' => false,
-                'cookies' => $cookieJar
-          ]);
-          $client->setClient($guzzleclient);
-
-        
             $import = new Import;
             $import = $import->getByHash($hash);
             
@@ -51,13 +34,11 @@ class AmazonController extends Controller
         
             $url = 'https://www.amazon.es/s?rh=n%3A667049031%2Cn%3A%21667050031%2Cn%3A';
             $web = $url.$node."&page=".$page; 
-            //$client = new Client();
+            $client = new Client();
             $client->setHeader('User-Agent', "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0");
             $client->setHeader('Cache-Control:', 'no-cache');
             $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:57.0) Gecko/20100101 Firefox/57.0");
             $crawler = $client->request('GET',"$web");
-            
-            dd($crawler);
             
             $importResponse = new ImportResponse;
             $importResponse->import_id = $import->id;
@@ -136,7 +117,21 @@ class AmazonController extends Controller
 
                         });
                         
+                        $productPrice= $crawler->filter('span#priceblock_ourprice')->each(function ($title) { 
+
+                                return array( 'price' => $title->text() );
+
+                        });
                         
+                        
+                        if (!empty($productPrice[0]['price'])){
+                            $price = str_replace("€", "", $productPrice[0]['price']);
+                            $price = str_replace(",", ".", $price);
+                            $price = floatval(trim($price));
+                        }
+                        else {
+                            $price = floatval(0.00);
+                        }
                         
                         $product = new Product;
                         $product->sku = $importProductData->sku; 
@@ -152,11 +147,17 @@ class AmazonController extends Controller
                         Storage::disk('s3')->put($file_path, base64_decode($image), 'public');
                         
                         $image = new ProductImage;
-                        $image->title = $productTitle[0]['title'];
+                        $image->title = trim($productTitle[0]['title']);
                         $image->link = $file_path;
                         $image->product_id = $product->id;
                         $image->hash = sha1($image->link.$image->product_id);
                         $image->save();
+                        
+                        $productPrice = new ProductPrice;
+                        $productPrice->product_id = $product->id;
+                        $productPrice->price = $price;
+                        $productPrice->hash = sha1($product->id.date('dmYHis'));
+                        $productPrice->save();
                         
                         
                         $importProduct->desactivateByHash($hash);
