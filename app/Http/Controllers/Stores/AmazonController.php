@@ -11,6 +11,7 @@ use App\ImportProduct;
 use App\Product;
 use App\Import;
 use App\ProductImage;
+use App\ImportResponse;
 use Illuminate\Support\Facades\Storage;
 
 class AmazonController extends Controller
@@ -33,6 +34,15 @@ class AmazonController extends Controller
             $client = new Client();
             $client->setHeader('User-Agent', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
             $crawler = $client->request('GET',"$web");
+            
+            dd($crawler);
+            
+            $importResponse = new ImportResponse;
+            $importResponse->import_id = $import->id;
+            $importResponse->response = json_encode($crawler);
+            $importResponse->status = 1;
+            $importResponse->hash = sha1($import->id.rand().date('dmYHis'));
+            $importResponse->save();
             
             $crawler->filter('div.s-result-item')->each(function ($title) { 
                 
@@ -60,6 +70,9 @@ class AmazonController extends Controller
                         
 
             });
+            
+            
+            
             $importUpdate = new Import;
             $importUpdate->updatePageByImportHash($import->hash);
             
