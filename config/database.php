@@ -66,14 +66,14 @@ return [
         ],
         
         /* PRODUCCIÓN */
-        /*'mysql' => [
+        'mysql' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '192.168.64.2'),
+            'host' => env('DB_HOST', '51.178.46.163'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'affiliate'),
-            'username' => env('DB_USERNAME', 'affiliate'),
-            'password' => env('DB_PASSWORD', 'ORPWH9ABFj6pPPpq'),
+            'database' => env('DB_DATABASE', 'chollos_'),
+            'username' => env('DB_USERNAME', 'chollos2020'),
+            'password' => env('DB_PASSWORD', 'Uc3pv02&'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
@@ -84,7 +84,7 @@ return [
             'options' => extension_loaded('pdo_mysql') ? array_filter([
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
-        ],*/
+        ],
         /* PRODUCCIÓN */
 
         'pgsql' => [

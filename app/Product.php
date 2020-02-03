@@ -34,4 +34,11 @@ class Product extends Model
         
             return $product;
         }
+        
+        public function getByHash($hash){
+            
+            $product = Product::where('hash', $hash)->first();
+        
+            return $product;
+        }
 }
