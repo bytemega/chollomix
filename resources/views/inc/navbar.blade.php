@@ -9,10 +9,12 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Chollos</a>
-      </li>
-      <li class="nav-item dropdown">
+      @foreach ($categories as $category)
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('category-view',$category->hash)}}">{{$category->title}}</a>
+        </li>
+      @endforeach
+      <!--<li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Informática
         </a>
@@ -22,7 +24,7 @@
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Ver todos</a>
         </div>
-      </li>
+      </li>-->
     </ul>
   </div>
 </nav>

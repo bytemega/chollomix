@@ -14,6 +14,7 @@
 Route::get('/','WebController@index')->name('welcome');
 Route::get('products','ProductsController@index')->name('products');
 Route::get('products/{hash}','ProductsController@products-view')->name('product-view');
+Route::get('categories/{hash}','ProductsController@category-view')->name('category-view');
 
 
 Route::get('amazon','WebController@amazon');

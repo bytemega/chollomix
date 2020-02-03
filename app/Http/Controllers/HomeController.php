@@ -28,9 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         
-        $products = Product::get();
-        $imports = Import::get();
-        $importsProducts = ImportProduct::get();
+        $products = Product::paginate(10);
+        $imports = Import::paginate(10);
+        $importsProducts = ImportProduct::paginate(10);
         return view('home')
             ->with('products', $products)
             ->with('imports',$imports)

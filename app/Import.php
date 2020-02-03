@@ -19,6 +19,11 @@ class Import extends Model
         'deleted'
     ];
     
+    public function products()
+    {
+        return $this->hasMany('App\ImportProduct');
+    }
+    
     public function getByHash($hash){
         $import = Import::where('imports.hash', $hash)
                 ->join('categories', 'categories.id', '=', 'imports.category_id')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Stores\AmazonController;
 
 use App\Product;
+use App\Category;
 
 class WebController extends Controller
 {
@@ -14,10 +15,11 @@ class WebController extends Controller
     
     public function index(){
         
-        $products = Product::get();
-        
+        $products = Product::paginate(10);
+        $categories = Category::get();
         return view('welcome')
-            ->with('products',$products);
+            ->with('products',$products)
+            ->with('categories',$categories);
         
         
         //$hash = 'gg45g45gv54vb5';

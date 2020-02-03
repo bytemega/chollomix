@@ -1,4 +1,4 @@
-
+<div class="row">
 @foreach ($products as $product)
         <div class="col-md-4 mt-5">
             <div class="card p-5 card-products">
@@ -23,7 +23,12 @@
                     <a class="col-md-12 text-center" target="_blank" href="https://www.amazon.es/gp/product/{{$product->sku}}/ref=as_li_ss_tl?pf_rd_p=17a988a6-15ad-46df-8d9f-8365d36240ce&pf_rd_r=6XBGH18821MAEHEYZMCH&tag=lalupadesherlockcom-21&">
                         <button class="btn btn-success btn-lg">Comprar</button>
                     </a>
+                        <p class="text-center">Precio verificado el:<br> {{ date('d-m-Y H:i', strtotime($price->updated_at)) }}</p>
                 
             </div>
         </div>
 @endforeach
+</div>
+<div class="row text-center">
+{{ $products->links() }}
+</div>

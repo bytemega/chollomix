@@ -42,6 +42,8 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
+        
+        
 
         'mysql' => [
             'driver' => 'mysql',
@@ -62,6 +64,28 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        
+        /* PRODUCCIÓN */
+        /*'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '192.168.64.2'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'affiliate'),
+            'username' => env('DB_USERNAME', 'affiliate'),
+            'password' => env('DB_PASSWORD', 'ORPWH9ABFj6pPPpq'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],*/
+        /* PRODUCCIÓN */
 
         'pgsql' => [
             'driver' => 'pgsql',

@@ -36,6 +36,7 @@
                         @endforeach
                         
                     </table>
+                    {{ $products->links() }}
                     
                 </div>
             </div>
@@ -57,6 +58,7 @@
                             <th>Nombre</th>
                             <th>Página</th>
                             <th>Categoría</th>
+                            <th>Productos</th>
                             <th>Opciones</th>
                         </tr>
                         @foreach ($imports as $import)
@@ -66,6 +68,7 @@
                                 <td>{{$import->name}}</td>
                                 <td>{{$import->page}}</td>
                                 <td>{{$import->category_id}}</td>
+                                <td>{{count($import->products)}}</td>
                                 <td>
                                     <a href="{{route('amazon.getProducts',$import->hash)}}">
                                         <button class="btn btn-success"><i class="fa fa-plus"></i> Importar SKU</button>
@@ -76,6 +79,7 @@
                         @endforeach
                         
                     </table>
+                    {{ $imports->links() }}
                     
                 </div>
             </div>
@@ -130,6 +134,7 @@
                         @endforeach
                         
                     </table>
+                    {{ $importsProducts->links() }}
                     
                 </div>
             </div>

@@ -52,8 +52,6 @@ class AmazonController extends Controller
                 $importProductCheck = new ImportProduct;
                 $importProductCheck = $importProductCheck->getBySKU($title->attr('data-asin'));
                 
-                echo 'producto: '.$title->attr('data-asin');
-                
                 if (empty($importProductCheck->id)){
                 
                     $importProduct = new ImportProduct;
