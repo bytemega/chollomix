@@ -56,8 +56,8 @@ class AmazonController extends Controller
                 
                     $importProduct = new ImportProduct;
 
-                    $importProduct->import_id = 4; 
-                    $importProduct->category_id = 4; 
+                    $importProduct->import_id = 5; 
+                    $importProduct->category_id = 5; 
                     $importProduct->sku = $title->attr('data-asin'); 
                     $importProduct->link = 'https://www.amazon.es/dp/'.$importProduct->sku;
                     $importProduct->hash = sha1($importProduct->sku);
