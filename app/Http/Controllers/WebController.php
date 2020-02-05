@@ -15,7 +15,7 @@ class WebController extends Controller
     
     public function index(){
         
-        $products = Product::paginate(12);
+        $products = Product::orderBy('id','DESC')->paginate(12);
         $categories = Category::get();
         return view('welcome')
             ->with('products',$products)

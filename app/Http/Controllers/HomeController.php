@@ -30,7 +30,7 @@ class HomeController extends Controller
         
         $products = Product::paginate(10);
         $imports = Import::paginate(10);
-        $importsProducts = ImportProduct::paginate(10);
+        $importsProducts = ImportProduct::orderBy('id','DESC')->where('active',1)->paginate(10);
         return view('home')
             ->with('products', $products)
             ->with('imports',$imports)
