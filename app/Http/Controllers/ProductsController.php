@@ -28,7 +28,7 @@ class ProductsController extends Controller
         
         $product = Product::where('hash', $hash)->first();
         $categories = Category::get();
-        $similarProducts = Product::where('category_id',$product->category_id)->paginate(6);
+        $similarProducts = Product::where('category_id',$product->category_id)->inRandomOrder()->paginate(6);
         
         return view('web.products.view')
             ->with('product',$product)
