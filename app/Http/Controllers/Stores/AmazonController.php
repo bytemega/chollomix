@@ -208,8 +208,9 @@ class AmazonController extends Controller
                 ),
         ));
         curl_exec($ch);
+        $html = file_get_contents($web);
         
-        dd($ch);
+        dd($html);
     }
 }
 
