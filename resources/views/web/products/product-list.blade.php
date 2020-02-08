@@ -2,13 +2,13 @@
 @foreach ($products as $product)
         <div class="col-md-4 mt-5">
             <div class="card p-5 card-products">
-                <a href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center">
+                <a href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center" title="Más información de {{substr($product->title,0,80)}}" alt="Más información de {{substr($product->title,0,80)}}">
                     <h3 style="font-size:medium">{{substr($product->title,0,150)}}</h3>
                 </a>
                 @foreach ($product->images as $image)
                     <img src="{{env('AWS_URL')}}{{$image->link}}" width="100%"  alt="{{substr($product->title,0,120)}}" title="{{ substr($product->title,0,120)}}">
                 @endforeach
-                    <a href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center">
+                    <a href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center" title="Más información de {{substr($product->title,0,80)}}" alt="Más información de {{substr($product->title,0,80)}}">
                         Más información
                     </a>
                     @if (!empty($product->prices))

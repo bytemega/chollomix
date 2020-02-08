@@ -172,7 +172,7 @@ function importProducts(){
                     },
                     error: console.log('error'),
                 });
-                wait(5000);  
+                wait(30000);  
             });
             
         },
