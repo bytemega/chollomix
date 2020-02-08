@@ -34,7 +34,17 @@ class AmazonController extends Controller
         
             $url = 'https://www.amazon.es/s?rh=n%3A667049031%2Cn%3A%21667050031%2Cn%3A';
             $web = $url.$node."&page=".$page; 
-            $client = new Client();
+            $client = new Client([
+                'base_uri' => 'http://www.yellowpages.com.au',
+                'cookies' => true,
+                'headers' =>  [
+                    'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                    'Accept-Encoding' => 'zip, deflate, sdch', 
+                    'Accept-Language' => 'en-US,en;q=0.8', 
+                    'Cache-Control'   => 'max-age=0',
+                    'User-Agent'      => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0'
+                ]
+            ]);
             $client->setHeader('User-Agent', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
             $client->setHeader('Cache-Control:', 'no-cache');
             $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
@@ -93,7 +103,17 @@ class AmazonController extends Controller
                     if (empty($productData->id)){
                         
                         $web = 'https://www.amazon.es/dp/'.$importProductData->sku.'/';
-                        $client = new Client();
+                        $client = new Client([
+                            'base_uri' => 'http://www.yellowpages.com.au',
+                            'cookies' => true,
+                            'headers' =>  [
+                                'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                                'Accept-Encoding' => 'zip, deflate, sdch', 
+                                'Accept-Language' => 'en-US,en;q=0.8', 
+                                'Cache-Control'   => 'max-age=0',
+                                'User-Agent'      => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0'
+                            ]
+                        ]);
                         $client->setHeader('User-Agent', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
                         $client->setHeader('Cache-Control:', 'no-cache');
                         $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
