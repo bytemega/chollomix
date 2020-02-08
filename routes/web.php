@@ -25,3 +25,8 @@ Route::get('amazon/getProductDetails/{hash}','Stores\AmazonController@getProduct
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+
+Route::get('amazon/test','Stores\AmazonController@gtest')->name('amazon.test');
