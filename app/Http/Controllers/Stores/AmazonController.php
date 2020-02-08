@@ -35,7 +35,6 @@ class AmazonController extends Controller
             $url = 'https://www.amazon.es/s?rh=n%3A667049031%2Cn%3A%21667050031%2Cn%3A';
             $web = $url.$node."&page=".$page; 
             $client = new Client([
-                'base_uri' => 'http://www.yellowpages.com.au',
                 'cookies' => true,
                 'headers' =>  [
                     'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -104,7 +103,6 @@ class AmazonController extends Controller
                         
                         $web = 'https://www.amazon.es/dp/'.$importProductData->sku.'/';
                         $client = new Client([
-                            'base_uri' => 'http://www.yellowpages.com.au',
                             'cookies' => true,
                             'headers' =>  [
                                 'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
