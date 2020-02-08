@@ -31,6 +31,8 @@ class AmazonController extends Controller
             
             $node = $import->node;
             $page = $import->page;
+            
+            $proxy = '69.196.150.210:3128';
         
             $url = 'https://www.amazon.es/s?rh=n%3A667049031%2Cn%3A%21667050031%2Cn%3A';
             $web = $url.$node."&page=".$page; 
@@ -47,7 +49,7 @@ class AmazonController extends Controller
             $client->setHeader('User-Agent', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
             $client->setHeader('Cache-Control:', 'no-cache');
             $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
-            $crawler = $client->request('GET',"$web");
+            $crawler = $client->request('GET',"$web",['proxy' => $proxy]);
             
             $importResponse = new ImportResponse;
             $importResponse->import_id = $import->id;
