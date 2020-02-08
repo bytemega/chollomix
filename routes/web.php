@@ -30,3 +30,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('amazon/test','Stores\AmazonController@test')->name('amazon.test');
+
+Route::get('amazon/nextImport','Stores\AmazonController@getNextImport')->name('amazon.getNextImport');

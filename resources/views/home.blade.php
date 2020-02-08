@@ -92,6 +92,11 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Importar productos</div>
+                
+                
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-info" onclick="importProducts()">Importación automática</button>
+                </div>
 
                 <div class="card-body">
                     
@@ -106,7 +111,6 @@
                             <th>Opciones</th>
                         </tr>
                         @foreach ($importsProducts as $importProduct)
-                            
                             <tr>
                                 <td>{{$importProduct->id}}</td>
                                 <td>{{$importProduct->import_id}}</td>
@@ -130,7 +134,6 @@
                                     @endif
                                 </td>
                             </tr>
-                   
                         @endforeach
                         
                     </table>
@@ -141,4 +144,41 @@
         </div>
     </div>
 </div>
+<script>
+function wait(ms){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + ms) {
+     end = new Date().getTime();
+  }
+}
+
+function importProducts(){
+    console.log('demo');
+    $.ajax({
+        type: "GET",
+        url: "{{route('amazon.getNextImport')}}",
+        success: function(data){
+            var data = JSON.parse(data);
+            console.log(data);
+            data.forEach(function(product){
+                console.log(product.hash)
+                var url = "http://192.168.64.2/affiliate-portal/public/amazon/getProductDetails/"+product.hash;
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function(data){
+                        console.log('Importado');
+                    },
+                    error: console.log('error'),
+                });
+                wait(5000);  
+            });
+            
+        },
+    });
+}
+
+
+</script>
 @endsection
