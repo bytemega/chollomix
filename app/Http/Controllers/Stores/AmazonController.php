@@ -196,7 +196,7 @@ class AmazonController extends Controller
     public function test() {
         
         $web = 'https://www.amazon.es/dp/B07HRZLRVH/';
-        
+        $proxy = '69.196.150.210:3128';       
         $client = new Client([
             'cookies' => true,
             'headers' =>  [
