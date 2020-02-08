@@ -100,6 +100,7 @@ class AmazonController extends Controller
                     $product = new Product;
                     $productData = $product->getBySKU($importProductData->sku);
                     
+                    $proxy = '69.196.150.210:3128';
                     
                     if (empty($productData->id)){
                         
@@ -117,7 +118,7 @@ class AmazonController extends Controller
                         $client->setHeader('User-Agent', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
                         $client->setHeader('Cache-Control:', 'no-cache');
                         $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
-                        $crawler = $client->request('GET',"$web");
+                        $crawler = $client->request('GET',"$web",['proxy' => $proxy]);
 
                         $productTitle = $crawler->filter('span#productTitle')->each(function ($title) { 
 
