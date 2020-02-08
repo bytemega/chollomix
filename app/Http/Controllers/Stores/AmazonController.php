@@ -196,20 +196,20 @@ class AmazonController extends Controller
     public function test() {
         
         $web = 'https://www.amazon.es/dp/B07HRZLRVH/';
-        $proxy = '69.196.150.210:3128';       
-        $client = new Client([
-            'cookies' => true,
-            'headers' =>  [
-                'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                'Accept-Encoding' => 'zip, deflate, sdch', 
-                'Accept-Language' => 'es-ES,es;q=0.8', 
-                'Cache-Control'   => 'max-age=0',
-                'User-Agent'      => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0'
-            ]
-        ]);
-        $crawler = $client->request('GET',"$web",['proxy' => $proxy]);
+        $ch=curl_init($web);
+        curl_setopt_array($ch,array(
+                CURLOPT_USERAGENT=>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
+                CURLOPT_ENCODING=>'gzip, deflate',
+                CURLOPT_HTTPHEADER=>array(
+                        'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                        'Accept-Language: en-US,en;q=0.5',
+                        'Connection: keep-alive',
+                        'Upgrade-Insecure-Requests: 1',
+                ),
+        ));
+        curl_exec($ch);
         
-        dd($crawler);
+        dd($ch);
     }
 }
 
