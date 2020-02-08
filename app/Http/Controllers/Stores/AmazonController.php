@@ -47,7 +47,7 @@ class AmazonController extends Controller
             $importResponse->hash = sha1($import->id.rand().date('dmYHis'));
             $importResponse->save();
             
-            $crawler->filter('div.s-result-item')->each(function ($title) { 
+            $crawler->filter('div.s-result-item')->each(function ($title) use ($import) { 
                 
                 $importProductCheck = new ImportProduct;
                 $importProductCheck = $importProductCheck->getBySKU($title->attr('data-asin'));
@@ -56,8 +56,8 @@ class AmazonController extends Controller
                 
                     $importProduct = new ImportProduct;
 
-                    $importProduct->import_id = 5; 
-                    $importProduct->category_id = 5; 
+                    $importProduct->import_id = $import->id; 
+                    $importProduct->category_id = $import->category_id; 
                     $importProduct->sku = $title->attr('data-asin'); 
                     $importProduct->link = 'https://www.amazon.es/dp/'.$importProduct->sku;
                     $importProduct->hash = sha1($importProduct->sku);
