@@ -126,6 +126,7 @@ class AmazonController extends Controller
                         
                         if (!empty($productPrice[0]['price'])){
                             $price = str_replace("€", "", $productPrice[0]['price']);
+                            $price = str_replace(".", "", $price);
                             $price = str_replace(",", ".", $price);
                             $price = floatval(trim($price));
                         }
