@@ -9,7 +9,7 @@
                     <a href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center">
                         Más información
                     </a>
-                    @if (!empty($product->prices)
+                    @if (!empty($product->prices))
                         @foreach ($product->prices as $price)
 
                             @if ($price->price > 0.00)
