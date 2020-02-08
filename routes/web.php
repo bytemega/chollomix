@@ -29,4 +29,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::get('amazon/test','Stores\AmazonController@gtest')->name('amazon.test');
+Route::get('amazon/test','Stores\AmazonController@test')->name('amazon.test');
