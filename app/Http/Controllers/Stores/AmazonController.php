@@ -202,7 +202,7 @@ class AmazonController extends Controller
                 CURLOPT_ENCODING=>'gzip, deflate',
                 CURLOPT_HTTPHEADER=>array(
                         'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                        'Accept-Language: en-US,en;q=0.5',
+                        'Accept-Language: es-ES,en;q=0.5',
                         'Connection: keep-alive',
                         'Upgrade-Insecure-Requests: 1',
                 ),
