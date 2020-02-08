@@ -94,7 +94,9 @@ class AmazonController extends Controller
                         
                         $web = 'https://www.amazon.es/dp/'.$importProductData->sku.'/';
                         $client = new Client();
-                        $client->setHeader('User-Agent', "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
+                        $client->setHeader('User-Agent', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
+                        $client->setHeader('Cache-Control:', 'no-cache');
+                        $client->setServerParameter('HTTP_USER_AGENT', "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0");
                         $crawler = $client->request('GET',"$web");
 
                         $productTitle = $crawler->filter('span#productTitle')->each(function ($title) { 
