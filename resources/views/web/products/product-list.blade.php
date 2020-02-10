@@ -13,9 +13,11 @@
                     <h3 style="font-size:small">{{substr($product->title,0,150)}}</h3>
                 </a>
                 @foreach ($product->images as $image)
-                    <img src="{{env('AWS_URL')}}{{$image->link}}" width="100%"  alt="{{substr($product->title,0,120)}}" title="{{ substr($product->title,0,120)}}">
+                    <a style="font-size:small" href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center" title="Más información de {{substr($product->title,0,80)}}" alt="Más información de {{substr($product->title,0,80)}}">
+                        <img src="{{env('AWS_URL')}}{{$image->link}}" width="100%"  alt="{{substr($product->title,0,120)}}" title="{{ substr($product->title,0,120)}}">
+                    </a>
                 @endforeach
-                    <a href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center" title="Más información de {{substr($product->title,0,80)}}" alt="Más información de {{substr($product->title,0,80)}}">
+                    <a style="font-size:small" href="{{route('product-view',$product->hash)}}" class="col-md-12 text-center" title="Más información de {{substr($product->title,0,80)}}" alt="Más información de {{substr($product->title,0,80)}}">
                         Más información
                     </a>
                     @if (!empty($product->prices))
@@ -23,19 +25,24 @@
 
                             @if ($price->price > 0.00)
 
-                            <h2 class="text-center">{{$price->price}} €</h2>
+                                <h2 class="text-center">{{$price->price}} €</h2>
+                                    
+                                <p class="text-center" style="font-size:x-small">Precio verificado el: {{ date('d-m-Y H:i', strtotime($price->updated_at)) }}</p>
+
+                                <a alt="Comprar {{substr($product->title,0,120)}}" title=" Comprar {{ substr($product->title,0,120)}}" class="col-md-12 text-center" target="_blank" href="https://www.amazon.es/gp/product/{{$product->sku}}/ref=as_li_ss_tl?pf_rd_p=17a988a6-15ad-46df-8d9f-8365d36240ce&pf_rd_r=6XBGH18821MAEHEYZMCH&tag=lalupadesherlockcom-21&">
+                                    <button class="btn btn-success">Comprar</button>
+                                </a>
+                            
+                            @else 
+                            
+                                <a alt="Comprar {{substr($product->title,0,120)}}" title=" Comprar {{ substr($product->title,0,120)}}" class="col-md-12 text-center" target="_blank" href="https://www.amazon.es/gp/product/{{$product->sku}}/ref=as_li_ss_tl?pf_rd_p=17a988a6-15ad-46df-8d9f-8365d36240ce&pf_rd_r=6XBGH18821MAEHEYZMCH&tag=lalupadesherlockcom-21&">
+                                    <button class="btn btn-success">Ver precio</button>
+                                </a>
 
                             @endif
 
                         @endforeach
                     @endif
-                
-                    <a alt="Comprar {{substr($product->title,0,120)}}" title=" Comprar {{ substr($product->title,0,120)}}" class="col-md-12 text-center" target="_blank" href="https://www.amazon.es/gp/product/{{$product->sku}}/ref=as_li_ss_tl?pf_rd_p=17a988a6-15ad-46df-8d9f-8365d36240ce&pf_rd_r=6XBGH18821MAEHEYZMCH&tag=lalupadesherlockcom-21&">
-                        <button class="btn btn-success">Comprar</button>
-                    </a>
-                        @if (!empty($price))
-                        <p class="text-center">Precio verificado el:<br> {{ date('d-m-Y H:i', strtotime($price->updated_at)) }}</p>
-                        @endif
                 
             </div>
         </div>

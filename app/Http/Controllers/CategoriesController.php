@@ -18,7 +18,7 @@ class CategoriesController extends Controller
          
         $category = Category::where('hash', $hash)->first();
         
-        $products = Product::where('category_id',$category->id)->paginate(12);
+        $products = Product::where('category_id',$category->id)->orderBy('id','DESC')->paginate(12);
         
         return view('web.categories.index')
             ->with('products',$products)
@@ -31,7 +31,7 @@ class CategoriesController extends Controller
         
         $category = Category::where('hash', $hash)->first();
         
-        $products = Product::where('category_id',$category->id)->paginate(12);
+        $products = Product::where('category_id',$category->id)->orderBy('id','DESC')->paginate(12);
         $categories = Category::get();
         
         return view('web.categories.view')
