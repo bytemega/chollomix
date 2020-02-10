@@ -5,12 +5,12 @@
 
 @section('content')
 <div style='background:#FFF;margin-top:50px;'>
-    <div class="row mt-5 pl-5 pr-5" >
+    <div class="row mt-5 pl-5 pr-5"  style="max-width:100%;margin:0px;padding:0">
         <div class="col-md-12">
         <h1 style="font-size:large">{{$product->title}}</h1>
         </div>
     </div>
-    <div class="row pl-5 pr-5">
+    <div class="row pl-5 pr-5" style="max-width:100%;margin:0px;padding:0">
         <div class='col-md-6'>
             @foreach ($product->images as $image)
                 <img src="{{env('AWS_URL')}}{{$image->link}}" width="100%"  alt="Ofertas {{substr($product->title,0,120)}}" title="Ofertas {{ substr($product->title,0,120)}}">
