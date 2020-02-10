@@ -31,10 +31,13 @@ class HomeController extends Controller
         $products = Product::paginate(10);
         $imports = Import::paginate(10);
         $importsProducts = ImportProduct::orderBy('id','DESC')->where('active',1)->paginate(10);
+        
+        $importsProductsCount = ImportProduct::orderBy('id','DESC')->where('active',1)->count();
         return view('home')
             ->with('products', $products)
             ->with('imports',$imports)
-            ->with('importsProducts',$importsProducts);
+            ->with('importsProducts',$importsProducts)
+            ->with('importsProductsCount',$importsProductsCount);
     }
     
 }

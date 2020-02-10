@@ -94,8 +94,12 @@
                 <div class="card-header">Importar productos</div>
                 
                 
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
+                    <div class="col-md-12 mt-3">
                     <button type="button" class="btn btn-info" onclick="importProducts()">Importación automática</button>
+                    </div>
+                    &nbsp;<br/>
+                    <div id="importProgress" class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%"> 1 / {{$importsProductsCount}} productos importados</div>
                 </div>
 
                 <div class="card-body">
@@ -145,6 +149,13 @@
     </div>
 </div>
 <script>
+
+document.getElementById('importProgress').style.visibility = "hidden";
+    
+   
+    
+    
+    
 function wait(ms){
    var start = new Date().getTime();
    var end = start;
@@ -161,6 +172,7 @@ function importProducts(){
         success: function(data){
             var data = JSON.parse(data);
             console.log(data);
+            var importCount = 0;
             data.forEach(function(product){
                 console.log(product.hash)
                 var url = "http://192.168.64.2/affiliate-portal/public/amazon/getProductDetails/"+product.hash;
@@ -170,7 +182,6 @@ function importProducts(){
                     success: function(data){
                         console.log('Importado');
                     },
-                    error: console.log('error'),
                 });
                 wait(30000);  
             });
