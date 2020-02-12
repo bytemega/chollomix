@@ -40,7 +40,7 @@
             </div>
                 <div class="footer bg-orange">
                     <h2 class='text-center logo-chollomix mt-3'>Chollomix</h2>
-                    <p class='p-5'>“Chollomix.com participa en el Programa de Afiliados de Amazon EU, un programa de publicidad para afiliados diseñado para ofrecer a sitios web un modo de obtener comisiones por publicidad, publicitando e incluyendo enlaces a Amazon.co.uk/ Amazon.de/ de.buyvip.com/Amazon.fr/Amazon.it/it.buyvip.com/ Amazon.es/es.buyvip.com.”</p>
+                    <p class='p-5'>“Chollomix.com participa en el Programa de Afiliados de Amazon EU, un programa de publicidad para afiliados diseñado para ofrecer a sitios web un modo de obtener comisiones por publicidad, publicitando e incluyendo enlaces a Amazon.co.uk/ Amazon.de/ de.buyvip.com/ Amazon.fr/ Amazon.it/ it.buyvip.com/ Amazon.es/ es.buyvip.com.”</p>
                 </div>
         
     </body>
