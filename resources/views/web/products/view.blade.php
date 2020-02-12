@@ -4,19 +4,15 @@
 @section('description',"Comprar $product->title")
 
 @section('content')
-<div style='background:#FFF;margin-top:50px;'>
-    <div class="row mt-5 pl-5 pr-5"  style="max-width:100%;margin:0px;padding:0">
-        <div class="col-md-12">
-        <h1 style="font-size:large">{{$product->title}}</h1>
-        </div>
-    </div>
-    <div class="row pl-5 pr-5" style="max-width:100%;margin:0px;padding:0">
-        <div class='col-md-6'>
+
+        <div class='col-md-6 pt-5' style="background:#FFF">
             @foreach ($product->images as $image)
                 <img src="{{env('AWS_URL')}}{{$image->link}}" width="100%"  alt="Ofertas {{substr($product->title,0,120)}}" title="Ofertas {{ substr($product->title,0,120)}}">
             @endforeach
         </div>
-        <div class='col-md-6'>
+
+        <div class="col-md-6 pt-5" style="background:#FFF">
+            <h1 style="font-size:large">{{$product->title}}</h1>
             <div class="text-center mt-5 mb-5">
                 @foreach ($product->prices as $price)
 
@@ -39,10 +35,8 @@
                 @endforeach
                  
             </div>
-            <p style="text-align:justify">{{$product->description}}</p>
+            <p style="text-align:justify">{{ str_replace('P.when("ReplacementPartsBulletLoader").execute(function(module){ module.initializeDPX(); })',"",$product->description) }}</p>
         </div>
-    </div>
-</div>
 
     <div class='col-md-12 pl-5 pr-5' style='background:#fff;margin-top:50px;'>
         <h3 class=" text-center pt-5">Histórico de precios</h3>
