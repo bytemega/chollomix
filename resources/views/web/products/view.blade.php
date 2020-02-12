@@ -22,7 +22,7 @@
                     <p class="text-center">Precio verificado el: {{date('d-m-Y H:i', strtotime($price->updated_at))}}</p>
                     
                     <a class="col-md-12 text-center" target="_blank" href="https://www.amazon.es/gp/product/{{$product->sku}}/ref=as_li_ss_tl?pf_rd_p=17a988a6-15ad-46df-8d9f-8365d36240ce&pf_rd_r=6XBGH18821MAEHEYZMCH&tag=lalupadesherlockcom-21&">
-                        <button class="btn btn-success btn-lg btn-block"  alt="Comprar {{substr($product->title,0,120)}}" title="Comprar {{ substr($product->title,0,120)}}">Comprar</button>
+                        <button class="btn btn-success btn-lg btn-block"  alt="Comprar {{substr($product->title,0,120)}}" title="Comprar {{ substr($product->title,0,120)}}">Comprar en Amazon</button>
                     </a>
 
                     @else 
